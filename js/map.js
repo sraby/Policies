@@ -38,10 +38,10 @@ function getInventoryByCityName(name) {
 		if (inventoryText[i][1] == name)
 			return inventoryText[i].slice(1,2).concat(inventoryText[i].slice(4));
 		}
-	return [];
+	return [""];
 }
 
-function detectLinks(s) {
+/* function detectLinks(s) {
 	var a = s.split(' ');
 	for (var i=0; i<a.length; i++) {
 		if (a[i].slice(0,4) == 'http') {
@@ -50,33 +50,31 @@ function detectLinks(s) {
 		}
 	}
 	return a.join(' ');
-}
+} */ 
 
 function fillInventoryBox(inv) {
 	if (inv.length > 0) {
 		$("#inv0").text(inv[0] + " policy measures");
-		$("#inv1").text(inv[1]);
-		$("#inv2").text(inv[2]);
-		$("#inv3").text(inv[3]);
-		$("#inv4").text(inv[4]);
-		$("#inv5").text(inv[5]);
-		$("#inv6").text(inv[6]);
-		$("#inv7").text(inv[7]);
-		$("#inv8").text(inv[8]);
-		$("#inv9").text(inv[9]);
-		$("#inv10").text(inv[10]);
-		$("#inv11").text(inv[11]);
-		$("#inv12").text(inv[12]);
-		$("#inv13").text(inv[13]);
-		$("#inv14").text(inv[14]);
-		$("#inv15").text(inv[15]);
-		
-		var sources = ''
-		for (i=0; i<8; i++) {
-			if (inv[16+i].length > 0)
-				sources += '<br>- ' + detectLinks(inv[16+i]);
-		}
-		$("#inv16").html(sources);
+		$("#inv1").text(inv[2]);
+		$("#inv2").text(inv[3]);
+		$("#inv3").text(inv[4]);
+		$("#inv4").text(inv[5]);
+		$("#inv5").text(inv[6]);
+		$("#inv6").text(inv[7]);
+		$("#inv7").text(inv[8]);
+		$("#inv8").text(inv[9]);
+		$("#inv9").text(inv[10]);
+		$("#inv10").text(inv[11]);
+		$("#inv11").text(inv[12]);
+		$("#inv12").text(inv[13]);
+		$("#inv13").text(inv[14]);
+		$("#inv14").text(inv[15]);
+		$("#inv15").text(inv[16]);
+		$("#inv16").text(inv[17]);
+		$("#inv17").text(inv[18]);
+		$("#inv18").text(inv[19]);
+		$("#inv19").text(inv[20]);
+		$("#inv20").text(inv[21]);
 	}
 }
 
@@ -170,7 +168,7 @@ function padBounds(bounds, pad) {
 function addCityOutline(name) {
 	activeCityName = name;
 	activeCityOutline = activeVis.getLayers()[1].createSubLayer({
-		sql: "SELECT * FROM public.antidisplacementlacountyreorder WHERE name = '" + name + "'",
+		sql: "SELECT * FROM antidisplacementlacountyreorder WHERE name = '" + name + "'",
 		cartocss: '#antidisplacementlacountyreorder { line-color: #000; line-width: 2;}'
 	});
 }
