@@ -6,6 +6,7 @@ var INITIAL_MAP_SETTINGS = {
 	center_lon: -118.55,
 	zoom: 9
 }
+
 var INITIAL_VISJSON_URL = $('#layer-selector .active').data('url');
 
 // state variables
@@ -148,7 +149,7 @@ $('#geo-selector li').click(function() {
 });
 
 function zoomToExtent(query, pad) {
-	var sql = new cartodb.SQL({user: 'cci-displacement'});
+	var sql = new cartodb.SQL({user: 'uducla'});
 	sql.getBounds(query).done(function(bounds) {
         activeVis.getNativeMap().fitBounds(padBounds(bounds, pad));
     });
@@ -169,8 +170,8 @@ function padBounds(bounds, pad) {
 function addCityOutline(name) {
 	activeCityName = name;
 	activeCityOutline = activeVis.getLayers()[1].createSubLayer({
-		sql: "SELECT * FROM bay_area_places_clean_v2 WHERE name = '" + name + "'",
-		cartocss: '#bay_area_places_clean_v2 { line-color: #000; line-width: 2;}'
+		sql: "SELECT * FROM public.antidisplacementlacountyreorder WHERE name = '" + name + "'",
+		cartocss: '#antidisplacementlacountyreorder { line-color: #000; line-width: 2;}'
 	});
 }
 
