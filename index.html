@@ -1,0 +1,432 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+       "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Urban Displacement Project: Policy Inventory Los Angeles</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+<!-- load code libraries -->
+<script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+<script src="lib/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="lib/bootstrap.css">
+<script src="lib/bootstrap.js"></script>
+<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700'>
+<link rel='stylesheet' href="map.css">
+
+</head>
+
+<body>
+	
+<div id="topBanner">
+	<img src='displacement-logo.png' height='120' width='800'>
+</div>
+	
+<div id="mapContainer"></div>
+
+<div id="policy-info" class="panel panel-danger">
+	<div><a class="close">&times;</a></div>
+	<div class="panel-heading">
+		<span id="inv0">Choose a city from the map to see its anti-displacement policy measures</span>
+	</div>
+	<ul class="list-group">
+        <li class="list-group-item"><b>Just cause eviction ordinance </b>
+            <a class="info" href="#Just_Evict"></a>
+            &nbsp;&nbsp;<span id="inv1">-</span></li>
+        <li class="list-group-item"><b>Rent stabilization or rent control </b>
+            <a class="info" href="#Rent_Control"></a>
+            &nbsp;&nbsp;<span id="inv2">-</span></li>
+            <li class="list-group-item"><b>Rent mediation </b>
+            <a class="info" href="#Rent_Mediation"></a>
+            &nbsp;&nbsp;<span id="inv3">-</span></li>
+        <li class="list-group-item"><b>Preservation of mobile homes (rent stabilization ordinance) </b>
+            <a class="info" href="#Mobile_Home"></a>
+            &nbsp;&nbsp;<span id="inv4">-</span></li>
+        <li class="list-group-item"><b>SRO preservation </b>
+            <a class="info" href="#SRO"></a>
+            &nbsp;&nbsp;<span id="inv5">-</span></li>
+        <li class="list-group-item"><b>Graduated density bonus </b>
+            <a class="info" href="#Grad_Density"></a>
+            &nbsp;&nbsp;<span id="inv6">-</span></li>
+        <li class="list-group-item"><b>Mixed-use zoning </b>
+            <a class="info" href="#MU_Zone"></a>
+            &nbsp;&nbsp;<span id="inv7">-</span></li>
+        <li class="list-group-item"><b>Condominium conversion regulations </b>
+            <a class="info" href="#Condo_Conv"></a>
+            &nbsp;&nbsp;<span id="inv8">-</span></li>
+        <li class="list-group-item"><b>Form-based code </b>
+            <a class="info" href="#Form_Based"></a>
+            &nbsp;&nbsp;<span id="inv9">-</span></li>
+        <li class="list-group-item"><b>Housing overlay zone </b>
+            <a class="info" href="#Housing_Overlay"></a>
+            &nbsp;&nbsp;<span id="inv10">-</span></li>
+        <li class="list-group-item"><b>Local density bonus ordinance </b>
+            <a class="info" href="#Loc_Density"></a>
+            &nbsp;&nbsp;<span id="inv11">-</span></li>
+        <li class="list-group-item"><b>Inclusionary/below market rate housing </b>
+            <a class="info" href="#Incl_Housing"></a>
+            &nbsp;&nbsp;<span id="inv12">-</span></li>
+        <li class="list-group-item"><b>In-lieu fees (inclusionary zoning) </b>
+            <a class="info" href="#In_Lieu"></a>
+            &nbsp;&nbsp;<span id="inv13">-</span></li>
+        <li class="list-group-item"><b>Homeowner repair or rehabilitation </b>
+            <a class="info" href="#Home_Rehab"></a>
+            &nbsp;&nbsp;<span id="inv14">-</span></li>
+        <li class="list-group-item"><b>Housing development impact fee </b>
+            <a class="info" href="#Res_Fee"></a>
+            &nbsp;&nbsp;<span id="inv15">-</span></li>
+        <li class="list-group-item"><b>Commercial development impact fee </b>
+            <a class="info" href="#Comm_Fee"></a>
+            &nbsp;&nbsp;<span id="inv16">-</span></li>
+        <li class="list-group-item"><b>Locally-funded homebuyer assistance programs </b>
+            <a class="info" href="#Buyer_Assist"></a>
+            &nbsp;&nbsp;<span id="inv17">-</span></li>
+        <li class="list-group-item"><b>Foreclosure assistance</b>
+            <a class="info" href="#Foreclose_Assist"></a>
+            &nbsp;&nbsp;<span id="inv18">-</span></li>      
+        <li class="list-group-item"><b>Community land trusts </b>
+            <a class="info" href="#Comm_Trust"></a>
+            &nbsp;&nbsp;<span id="inv19">-</span></li>
+        <li class="list-group-item"><b>Affordable housing trust fund </b>
+            <a class="info" href="#Aff_Fund"></a>
+            &nbsp;&nbsp;<span id="inv20">-</span></li>
+    </ul>
+</div>
+
+<div id="layerSelectionContainer">
+<div class="dropdown">
+<!-- this button style is from the Bootstrap library -->
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Map a specific policy...
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu scrollable-menu" id="layer-selector" aria-labelledby="dropdownMenuDivider">
+    <li data-url="viz/policies_count.json" class="active">
+    <a href="#">Number of anti-displacement policies</a></li>
+    <li role="separator" class="divider"></li>
+    <li data-url="viz/policies_count.json">
+    <a href="#">Just cause eviction ordinance</a></li>
+    <li data-url="https://uducla.carto.com/api/v2/viz/f28cb532-5c03-405e-9992-a1204703f23f/viz.json">
+    <a href="#">Rent stabilization or rent control</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/772b3aa0-c233-11e5-90af-0e5db1731f59/viz.json">
+    <a href="#">Rent review board and/or mediation</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/92e6efdc-c233-11e5-9730-0e31c9be1b51/viz.json">
+    <a href="#">Mobile home rent control</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/abc35504-c233-11e5-a7df-0e5db1731f59/viz.json">
+    <a href="#">SRO preservation</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/c54681a4-c233-11e5-ac63-0ecd1babdde5/viz.json">
+    <a href="#">Condominium conversion regulations</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/de20196a-c233-11e5-9e04-0ecfd53eb7d3/viz.json">
+    <a href="#">Foreclosure assistance</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/f9ebb316-c233-11e5-b63e-0e787de82d45/viz.json">
+    <a href="#">Jobs-housing linkage fee</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/9b4805b6-c234-11e5-812e-0e787de82d45/viz.json">
+    <a href="#">Commercial linkage fee</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/b1bfa3da-c234-11e5-9aa6-0e3ff518bd15/viz.json">
+    <a href="#">Housing trust fund</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/d73d07ce-c234-11e5-af0f-0e3ff518bd15/viz.json">
+    <a href="#">Inclusionary zoning</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/0faa0850-c235-11e5-9e04-0ecfd53eb7d3/viz.json">
+    <a href="#">Density bonus ordinance</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/2461b310-c235-11e5-b82d-0e31c9be1b51/viz.json">
+    <a href="#">Community land trusts</a></li>
+    <li data-url="https://cci-displacement.cartodb.com/api/v2/viz/3dbcc8b8-c235-11e5-bc5e-0e3ff518bd15/viz.json">
+    <a href="#">First source hiring</a></li>      
+  </ul>
+</div>
+</div>
+
+<div id ="geoSelectionContainer">
+<div class="dropdown">
+<!-- this button style is from the Bootstrap library -->
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Find a city...
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu scrollable-menu" id="geo-selector" aria-labelledby="dropdownMenuDivider">
+    <li data-geo="all" class="active"><a href="#">SHOW ALL</a></li>   
+    <li role="separator" class="divider"></li>
+    <li data-geo="city"><a href="#">
+        Agoura Hills</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Alhambra</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Arcadia</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Artesia</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Azusa</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Baldwin Park</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Bell</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Bell Gardens</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Bellflower</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Beverly Hills</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Bradbury</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Burbank</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Calabasas</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Carson</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Cerritos</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Claremont</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Commerce</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Compton</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Covina</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Cudahy</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Culver City</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Diamond Bar</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Downey</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Duarte</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        El Monte</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        El Segundo</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Gardena</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Glendale</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Glendora</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Hacienda Heights</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Hawaiian Gardens</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Hawthorne</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Hermosa Beach</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Hidden Hills</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Huntington Beach</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Industry</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Inglewood</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Irwindale</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        La Cañada Flintridge</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        La Habra Heights</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        La Mirada</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        La Puente</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        La Verne</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Lakewood</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Lancaster</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Lawndale</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Lomita</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Long Beach</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Los Angeles City</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Los Angeles County</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Lynwood</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Malibu</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Manhattan Beach</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Maywood</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Monrovia</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Montebello</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Monterey Park</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Norwalk</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Palmdale</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Palos Verdes Estates</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Paramount</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Pasadena</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Pico Rivera</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Pomona</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Rancho Palos Verdes</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Redondo Beach</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Rolling Hills</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Rolling Hills Estates</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Rosemead</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        San Dimas</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        San Fernando</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        San Gabriel</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        San Marino</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Santa Clarita</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Santa Fe Springs</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Santa Monica</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Sierra Madre</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Signal Hill</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        South El Monte</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        South Gate</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        South Pasadena</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Temple City</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Torrance</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Vernon</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Walnut</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        West Covina</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        West Hollywood</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Westlake Village</a></li>
+        </a></li>
+        <li data-geo="city"><a href="#">
+        Whittier</a></li>
+        </a></li></ul>
+</div>
+</div>
+
+<!--
+<div class="expand-map">
+	<a onclick="expandMap();" class="btn btn-primary">
+		Larger <span class="glyphicon glyphicon-chevron-down"></span> Map</a></div>
+-->
+
+<script src="js/inventory.js"></script>
+<script src="js/map.js"></script>
+
+</body>
+</html>
