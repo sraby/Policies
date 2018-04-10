@@ -92,14 +92,14 @@ html, body, #map {
   line-height: 1.1;
 }
 
-/* overrides default style for legends 
+/* overrides default style for legends */ 
 #map .cartodb-legend-stack {
 	right: 30px;
-	width: 280px;
+	/* width: 280px; */
 }
 #map .cartodb-legend-stack .cartodb-legend .legend-title {
 	font-family: 'Open Sans', sans-serif;
-	color: black;
+	color: #043361;
 	font-size: 12px;
 	font-weight: bold;
 	text-transform: none;
@@ -130,8 +130,6 @@ html, body, #map {
 	width: 20%;
 	text-align: center;
 }
-
-*/
 
 /* overrides default style for tooltips */
 #map .cartodb-tooltip-content {

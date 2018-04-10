@@ -113,7 +113,7 @@ vizjson({
                      "visible":true,
                      "options":{  
                         "layer_name":"la_policy_data",
-                        "cartocss":"#layer {\n  polygon-fill: ramp([rent_mediation_1], (#e1dbca, #e49d1b), (0, 1), \"=\", category);\n  opacity: 0.9;\n}\n#layer::outline {\n  line-width: 1;\n  line-color: #FFFFFF;\n  line-opacity: 0.5;\n}",
+                        "cartocss":"#layer {\n  polygon-fill: ramp([rent_mediation_1], (#E2DDCF, #F9BB56), (0, 1), \"=\", category);\n  opacity: 0.9;\n}\n#layer::outline {\n  line-width: 1;\n  line-color: #FFFFFF;\n  line-opacity: 0.5;\n}",
                         "cartocss_version":"2.1.1",
                         "interactivity":"cartodb_id",
                         "sql":"SELECT * FROM la_policy_data",
