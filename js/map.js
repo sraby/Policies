@@ -54,8 +54,7 @@ function getInventoryByCityName(name) {
 
 function fillInventoryBox(inv) {
 	if (inv.length > 0) {
-		$("#inv0").text(inv[0] + " policy measures");
-		$("#invcount").text(inv[1]);
+		$("#inv0").text(inv[0] + ": " + inv[1] + " policy measures");
 		$("#inv1").text(inv[2]);
 		$("#inv2").text(inv[3]);
 		$("#inv3").text(inv[4]);
@@ -102,12 +101,16 @@ function setUpMap(visjsonURL, mapSettings) {
 			});
 			getVisLayer().on('featureClick', function(e, latlng, pos, data) {
 				$('#policy-info').show();
+				$("#policy-info .list-group-item").css("font-weight", "400");
 				fillInventoryBox(getInventoryById(data.cartodb_id));
+				$("#policy-info .list-group-item:not(:contains('No'))").css("font-weight", "700");
 				clearCityOutline();
 				addCityOutline(getCityNameFromId(data.cartodb_id));
 			});
 		});
 }
+
+//$('#policy-info span:contains("No"))').css("font-weight", "400");
 
 $('.close').click(function() {
 	$('#policy-info').hide();
@@ -135,7 +138,9 @@ $('#geo-selector li').click(function() {
 
 	if (geo == 'city') {
 		$('#policy-info').show();
+		$("#policy-info .list-group-item").css("font-weight", "400");
 		fillInventoryBox(getInventoryByCityName(selection));
+		$("#policy-info .list-group-item:not(:contains('No'))").css("font-weight", "700");
 		query += " WHERE name = '" + selection + "'";
 		addCityOutline(selection);
 		zoomToExtent(query, 1.0);
