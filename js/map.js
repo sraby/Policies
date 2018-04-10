@@ -55,6 +55,7 @@ function getInventoryByCityName(name) {
 function fillInventoryBox(inv) {
 	if (inv.length > 0) {
 		$("#inv0").text(inv[0] + " policy measures");
+		$("#invcount").text(inv[1]);
 		$("#inv1").text(inv[2]);
 		$("#inv2").text(inv[3]);
 		$("#inv3").text(inv[4]);
