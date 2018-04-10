@@ -86,6 +86,10 @@ html, body, #map {
   opacity: 0.4;
 }
 
+.list-group {
+  line-height: 1.1;
+}
+
 /* overrides default style for legends 
 #map .cartodb-legend-stack {
 	right: 30px;

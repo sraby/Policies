@@ -169,8 +169,8 @@ function padBounds(bounds, pad) {
 function addCityOutline(name) {
 	activeCityName = name;
 	activeCityOutline = activeVis.getLayers()[1].createSubLayer({
-		sql: "SELECT * FROM antidisplacementlacountyreorder WHERE name = '" + name + "'",
-		cartocss: '#antidisplacementlacountyreorder { line-color: #000; line-width: 2;}'
+		sql: "SELECT * FROM la_policy_data WHERE name = '" + name + "'",
+		cartocss: '#la_policy_data { line-color: #000; line-width: 2;}'
 	});
 }
 
