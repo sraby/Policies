@@ -47,6 +47,15 @@ html, body, #map {
 	box-shadow: rgba(0,0,0,.1) 0 0 4px 2px;
 	font-size: 12px;
 }
+
+.panel-danger {
+    border-color: #ccc;
+}
+
+.panel-danger > .panel-heading {
+    border-color: #ccc;
+}
+
 #policy-info a.external {
     background: url(external_link.png) center right no-repeat;
     padding-right: 13px;
@@ -108,7 +117,7 @@ table.glossary {
  }
 
 table.glossary td {
-	padding-bottom: 1.5em;
+	padding-top: 1.5em;
 	vertical-align: top;
 }
 
@@ -122,6 +131,8 @@ table.glossary td {
 /* overrides default style for legends */ 
 #map .cartodb-legend-stack {
 	right: 30px;
+	border-color: #ccc;
+	box-shadow: none;
 	/* width: 280px; */
 }
 #map .cartodb-legend-stack .cartodb-legend .legend-title {
@@ -175,6 +186,8 @@ table.glossary td {
 #map .cartodb-zoom {
 	position: absolute;
 	right: 35px;
+	border-color: #ccc;
+	box-shadow: none;
 }
 
 /* add scrolling to bootstrap menus */

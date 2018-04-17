@@ -152,6 +152,21 @@ $('#geo-selector li').click(function() {
 	resetMenu($(this));
 });
 
+$(document).ready(function(){
+    $('a[href^="#"]').on('click',function (e) {
+        e.preventDefault();
+
+        var target = this.hash;
+        $target = $(target);
+
+        $('html, body').stop().animate({
+            'scrollTop':  $target.offset().top
+        }, 600, 'swing', function () {
+            window.location.hash = target;
+        });
+    });
+});
+
 function zoomToExtent(query, pad) {
 	var sql = new cartodb.SQL({user: 'uducla'});
 	sql.getBounds(query).done(function(bounds) {
