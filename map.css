@@ -92,6 +92,33 @@ html, body, #map {
   line-height: 1.1;
 }
 
+/* glossary table */
+
+.glossary-title {
+	font-size: 20px;
+	margin-left: 20px;
+	margin-top: 10px;
+	color: #043361;
+	font-weight: bold;
+}
+
+table.glossary {
+    margin-left: 20px;
+    margin-right: 20px;
+ }
+
+table.glossary td {
+	padding-bottom: 1.5em;
+	vertical-align: top;
+}
+
+.glossary-label {
+	font-size: 14px;
+    font-weight: bold;
+    color: #043361;
+    padding-right: 10px;
+}
+
 /* overrides default style for legends */ 
 #map .cartodb-legend-stack {
 	right: 30px;
