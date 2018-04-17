@@ -190,7 +190,7 @@ function addCityOutline(name) {
 	activeCityName = name;
 	activeCityOutline = activeVis.getLayers()[1].createSubLayer({
 		sql: "SELECT * FROM la_policy_data WHERE name = '" + name + "'",
-		cartocss: '#la_policy_data { line-color: #000; line-width: 2;}'
+		cartocss: '#la_policy_data { line-color: #000; line-width: 1;}'
 	});
 }
 
