@@ -77,7 +77,7 @@ html, body, #map {
 #policy-info .list-group-item {
 	padding-top: 4px;
 	padding-bottom: 4px;
-	float: left;
+	/* float: left; */ 
 }
 
 /* close button */
