@@ -1,5 +1,5 @@
 vizjson({  
-   "id":"789c1164-1e0d-4501-a7e4-0d36f6ec581b",
+   "id":"242c9939-ea62-43c5-bb1d-c861f3b28f7f",
    "version":"0.1.0",
    "title":"one_policy",
    "likes":0,
@@ -61,7 +61,7 @@ vizjson({
             "sql_api_port":80,
             "filter":"mapnik",
             "layer_definition":{  
-               "stat_tag":"789c1164-1e0d-4501-a7e4-0d36f6ec581b",
+               "stat_tag":"242c9939-ea62-43c5-bb1d-c861f3b28f7f",
                "version":"1.0.1",
                "layers":[  
                   {  
@@ -112,7 +112,7 @@ vizjson({
                      "order":1,
                      "visible":true,
                      "options":{  
-                        "layer_name":"la_policy_data",
+                        "layer_name":"la_policy_final",
                         "cartocss":"#layer {\n  polygon-fill: ramp([buyer_assist_1], (#E2DDCF, #F9BB56), (0, 1), \"=\", category);\n  opacity: 0.9;\n}\n#layer::outline {\n  line-width: 1;\n  line-color: #FFFFFF;\n  line-opacity: 0.5;\n}",
                         "cartocss_version":"2.1.1",
                         "interactivity":"cartodb_id",
