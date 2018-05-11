@@ -156,7 +156,7 @@ vizjson({
                         "cartocss":"#layer {\n  polygon-fill: ramp([policies_count], (#e1dbca, #F2E0BF, #F2E0BF, #F5D290, #F5D290, #F9C361, #F9C361, #FCB532, #FCB532, #e49d1b, #e49d1b), (0, 1, 2, 3, 4, 5, 6, 7, 8, 9), \"=\", category);\n  opacity: 0.9;\n}\n#layer::outline {\n  line-width: 1;\n  line-color: #FFFFFF;\n  line-opacity: 0.5;\n}",
                         "cartocss_version":"2.1.1",
                         "interactivity":"cartodb_id",
-                        "sql":"SELECT * FROM la_policy_data",
+                        "sql":"SELECT * FROM la_policy_final",
                         "table_name":"\"\"."
                      }
                   }
