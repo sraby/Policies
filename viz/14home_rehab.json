@@ -1,7 +1,7 @@
 vizjson({  
    "id":"242c9939-ea62-43c5-bb1d-c861f3b28f7f",
    "version":"0.1.0",
-   "title":"one_policy",
+   "title":"la_policy_final map",
    "likes":0,
    "description":null,
    "scrollwheel":true,
@@ -42,7 +42,7 @@ vizjson({
          },
          "infowindow":null,
          "tooltip":null,
-         "id":"dd588953-41ef-46f8-94d0-0311a61ce0fa",
+         "id":"0decad38-a6e9-4b21-8b24-216468cfd197",
          "order":0,
          "type":"tiled"
       },
@@ -65,7 +65,7 @@ vizjson({
                "version":"1.0.1",
                "layers":[  
                   {  
-                     "id":"ff60352f-d901-4b6a-bfd4-9acd828ebc2c",
+                     "id":"1e3bcd43-7bc2-4f51-b676-10cd803d5460",
                      "type":"CartoDB",
                      "infowindow":{  
                         "template_name":"infowindow_light",
@@ -144,7 +144,7 @@ vizjson({
          },
          "infowindow":null,
          "tooltip":null,
-         "id":"48d2802e-e072-437e-975d-4818b670e69e",
+         "id":"1bd933c2-2724-4c64-94d0-cf5faa22de8a",
          "order":2,
          "type":"tiled"
       }
