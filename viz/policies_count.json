@@ -97,6 +97,7 @@ vizjson({
                         "template":"",
                         "visible":true,
                         "items":[  
+                              // LEGEND LABEL FOR LOW VALUE:
                            {  
                               "name":"Left label",
                               "visible":true,
@@ -104,6 +105,7 @@ vizjson({
                               "type":"text",
                               "custom_value":true
                            },
+                              // LEGEND LABEL FOR HIGH VALUE: 
                            {  
                               "name":"Right label",
                               "visible":true,
